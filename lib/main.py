@@ -3,14 +3,17 @@ from Paddle import Paddle
 from Ball import Ball
 import time
 
+SCREEN_HEIGHT = 1000
+SCREEN_WIDTH = 1500
+
 screen = Screen()
-screen.setup(width=1500, height=1000)
+screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 screen.bgcolor("black")
 screen.tracer(0)
 screen.title("PyPong")
 
-right_paddle = Paddle((700, 0))
-left_paddle = Paddle((-700, 0))
+right_paddle = Paddle((SCREEN_WIDTH * 0.5 - 50, 0))
+left_paddle = Paddle((SCREEN_WIDTH * -0.5 + 50, 0))
 ball = Ball()
 
 screen.listen()
@@ -26,7 +29,9 @@ while game_is_on:
     screen.update()
     ball.move()
 
-
+    #Detect collision with wall
+    if ball.ycor() > (SCREEN_HEIGHT - 520) or ball.ycor() < (SCREEN_HEIGHT * -1 + 520):
+        ball.bounce()
 
 
 
