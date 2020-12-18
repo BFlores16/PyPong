@@ -37,6 +37,11 @@ while game_is_on:
     if ball.distance(right_paddle) < 50 and ball.xcor() > (SCREEN_WIDTH - 820) or ball.distance(left_paddle) < 50 and ball.xcor() < -670:
         ball.bounce_x()
 
+    #Detect if ball misses the screen
+    if ball.xcor() > SCREEN_WIDTH - 750:
+        ball.reset()
+    if ball.xcor() < SCREEN_WIDTH * -0.5:
+        ball.reset()
 
 
 
